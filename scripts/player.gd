@@ -6,3 +6,12 @@ func _physics_process(_delta):
 	velocity = input.normalized() * speed
 	# Сюда код ниже
 	move_and_slide()
+
+@export var hand: Sprite2D
+
+func _unhandled_input(event):
+	if event.is_action_pressed('use_tool'):
+		if Global.inventory.size() > 0:
+			var item = Global.inventory[0]
+			if item.is_tool:
+				hand.texture = item.icon

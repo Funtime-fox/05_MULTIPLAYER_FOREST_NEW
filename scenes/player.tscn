@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://5q7vte607ebm" path="res://assets/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c7i0yx4dy5h80" path="res://scenes/player.gd" id="1_g2els"]
+[ext_resource type="Resource" uid="uid://1mvshwoc5iqp" path="res://resources/axe.tres" id="2_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_svnoa"]
 
@@ -79,15 +80,31 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1291343837 node_paths=PackedStringArray("anim")]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qhqgy"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite2D:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("AnimatedSprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[node name="Player" type="CharacterBody2D" unique_id=1291343837 node_paths=PackedStringArray("anim", "hand", "camera", "name_label")]
 script = ExtResource("1_g2els")
 anim = NodePath("AnimatedSprite2D")
+hand = NodePath("Hand")
+item_resources = ExtResource("2_qhqgy")
+camera = NodePath("Camera2D")
+name_label = NodePath("NameLabel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=617916304]
 shape = SubResource("CircleShape2D_svnoa")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1001502164]
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1331084069]
 scale = Vector2(1.015625, 1.0625)
@@ -95,3 +112,19 @@ sprite_frames = SubResource("SpriteFrames_lsvt4")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.08430484
+
+[node name="Hand" type="Sprite2D" parent="." unique_id=387182848]
+
+[node name="NameLabel" type="Label" parent="." unique_id=1075910413]
+z_index = 10
+offset_left = -7.9999995
+offset_top = -11.0
+offset_right = 32.0
+offset_bottom = 12.0
+scale = Vector2(0.41024682, 0.25442111)
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=456339960]
+replication_config = SubResource("SceneReplicationConfig_qhqgy")

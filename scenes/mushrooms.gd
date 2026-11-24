@@ -1,17 +1,13 @@
-extends Node2D 
+extends Node2D
 
-@export var item_id: String = 'mushrooms' 
+@export var item_resources: ItemData
 
- # Если в Area2D находиться любое body, вызывается данная функция 
-func _on_area_2d_body_entered(body: Node2D) -> void: 
-	if body.name == 'Player': 
-		 # Вызов сигнала с именем предмета 
-		Global.item_collected.emit(item_id) 
-		 # Удаление предмета 
+# Если в Area2D находиться любое body, вызывается данная функция
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	# Проверка body = Player
+	if body.name == 'Player':
+		# Вызов add_item с ресурсом ItemData
+		Global.add_item(item_resources)
+		# Удаление предмета
 		queue_free()
-	 # Проверка body = Player 
-	if body.name == 'Player': 
-		 # Вызов сигнала с именем предмета 
-		Global.item_collected.emit(item_id) 
-		 # Удаление предмета 
-		queue_free()
+		

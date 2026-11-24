@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bev5r04k53a6d"]
+
+[ext_resource type="Script" uid="uid://c1w8vanwaqoag" path="res://scripts/chat_and_tab.gd" id="1_shjp4"]
+
+[node name="ChatAndTab" type="CanvasLayer" unique_id=423057257]
+script = ExtResource("1_shjp4")
+
+[node name="TabMenu" type="PanelContainer" parent="." unique_id=988863783]
+visible = false
+custom_minimum_size = Vector2(60, 30)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5356197, 0.63351935)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabMenu" unique_id=561423694]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="TabMenu/VBoxContainer" unique_id=31821185]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Список игроков"
+
+[node name="PlayerList" type="VBoxContainer" parent="TabMenu/VBoxContainer" unique_id=1898577558]
+layout_mode = 2
+
+[node name="Chat" type="Control" parent="." unique_id=634808677]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 92.0
+offset_right = 101.0
+offset_bottom = 132.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Chat" unique_id=1961078334]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.4920049, 1)
+
+[node name="ChatMessages" type="RichTextLabel" parent="Chat/VBoxContainer" unique_id=319943704]
+custom_minimum_size = Vector2(50, 10)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/normal_font_size = 5
+theme_override_font_sizes/bold_font_size = 5
+theme_override_font_sizes/bold_italics_font_size = 5
+theme_override_font_sizes/italics_font_size = 5
+theme_override_font_sizes/mono_font_size = 5
+bbcode_enabled = true
+
+[node name="ChatInput" type="LineEdit" parent="Chat/VBoxContainer" unique_id=755941012]
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+placeholder_text = "Нажмите Enter для отправки..."
+expand_to_text_length = true
